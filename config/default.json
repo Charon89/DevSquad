@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://DevAdmin:accessdenied987@devsquad-wouwz.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
+}

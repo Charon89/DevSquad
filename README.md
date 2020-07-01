@@ -4,7 +4,7 @@ MERN project, full-stack social network application using Node.js, Express, Reac
 
 :white_check_mark: Built an extensive backend API with Node.js & Express
 
-:white_check_mark: Protecting routes/endpoints with JWT (JSON Web Tokens)
+:white_check_mark: Protected routes/endpoints with JWT (JSON Web Tokens)
 
 :white_check_mark: Extensively API tested with Postman
 

@@ -6,10 +6,11 @@ const config = require('config');
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile,');
 const User = require('../../models/User');
+const Post = require('../../models/Post');
+
 // @route   GET api/profile/me
 // @desc    Get current users profile
 // @access  Private
-
 router.get('/me', auth, async (req, res) => {
     try {
         const profile = await Profile.findOne({user: req.user.id}).populate('user', ['name', 'avatar']);
@@ -124,8 +125,8 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
     try {
-        // TOTO: remove users posts
-
+        // Remove users posts
+        await Post.deleteMany({user: req.user.id});
         // Remove profile
         await Profile.findOneAndRemove({user: req.user.id});
         // Remove user
@@ -243,7 +244,7 @@ router.get('/github/:username', (req, res) => {
         };
         request(options, (error, response, body) => {
             if (error) console.log(error);
-            if (response.statusCode != 200) return  res.status(404).json({msg: 'No GitHub profile found'});
+            if (response.statusCode != 200) return res.status(404).json({msg: 'No GitHub profile found'});
             res.json(JSON.parse(body));
         })
     } catch (e) {

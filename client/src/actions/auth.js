@@ -1,5 +1,14 @@
 import axios from 'axios';
-import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR} from "./types";
+import {
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+    USER_LOADED,
+    AUTH_ERROR,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    LOGOUT,
+    CLEAR_PROFILE
+} from "./types";
 import {setAlert} from "./alert";
 import setAuthToken from "../utils/setAuthToken";
 //Load User
@@ -8,14 +17,14 @@ export const loadUser = () => async dispatch => {
         setAuthToken(localStorage.token);
     }
 
-    try{
+    try {
         const res = await axios.get('/api/auth');
 
         dispatch({
             type: USER_LOADED,
             payload: res.data
         });
-    }catch (e) {
+    } catch (e) {
         dispatch({
             type: AUTH_ERROR
         })
@@ -36,7 +45,8 @@ export const register = ({name, email, password}) => async dispatch => {
         dispatch({
             type: REGISTER_SUCCESS,
             payload: res.data
-        })
+        });
+        dispatch(loadUser());
     } catch (e) {
         const errors = e.response.data.errors;
         if (errors) {
@@ -46,4 +56,38 @@ export const register = ({name, email, password}) => async dispatch => {
             type: REGISTER_FAIL
         })
     }
-}
+};
+
+//Login User
+export const login = (email, password) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-type': 'application/json'
+        }
+    };
+    const body = JSON.stringify({email, password});
+
+    try {
+        const res = await axios.post('/api/auth', body, config);
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res.data
+        });
+        dispatch(loadUser());
+    } catch (e) {
+        const errors = e.response.data.errors;
+        if (errors) {
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+        }
+        dispatch({
+            type: LOGIN_FAIL
+        })
+    }
+};
+
+// LOgout /Clear profile
+export const logout = () => dispatch => {
+    dispatch({type: CLEAR_PROFILE});
+    dispatch({type: LOGOUT});
+};
+

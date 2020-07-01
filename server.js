@@ -10,7 +10,7 @@ connectDB();
 app.use(express.json({extended: false}))
 
 app.get('/', (req, res) => {
-    res.send('Hello')
+    res.send('DevSquad API...')
 });
 
 app.use('/api/users', require('./routes/api/users'));

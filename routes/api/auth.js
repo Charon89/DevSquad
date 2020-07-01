@@ -63,11 +63,11 @@ router.post('/', [
                 {expiresIn: 360000},
                 (err, token) => {
                     if (err) throw err;
-                    console.log(token);
+                    console.log("Auth token: " + token);
                     res.json({token});
                 })
-        } catch (e) {
-            console.log(e.error);
+        } catch (err) {
+            console.log(err.error);
             return res.status(500).send('Authentication server error')
         }
 

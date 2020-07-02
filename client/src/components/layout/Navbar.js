@@ -7,7 +7,10 @@ import {logout} from "../../actions/auth";
 const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
     const authLinks = (
         <ul>
-            <li><Link to="/profiles">Developers</Link></li>
+            <li><Link to="/profiles"><i className="far fa-address-card"></i>{' '} <span
+                className="hide-sm">Developers</span></Link></li>
+            <li><Link to="/posts"><i className="fas fa-comments"></i><span className="hide-sm"> {' '}Posts</span></Link>
+            </li>
             <li>
                 <Link to="/dashboard">
                     <i className="fas fa-user"></i>{' '}

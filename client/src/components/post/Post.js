@@ -13,9 +13,11 @@ const Post = ({getPost, post: {post, loading}, match}) => {
     }, [getPost]);
     return loading || post === null ? <Spinner/> : (
         <Fragment>
+
             <Link className='btn btn-light' to='/posts'> Back To Posts </Link>
             <PostItem post={post} showActions={false}/>
             <CommentForm postId={post._id}/>
+
         </Fragment>
     );
 };

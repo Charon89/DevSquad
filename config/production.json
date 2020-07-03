@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://DevAdmin:accessdenied987@devsquad-wouwz.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "a44857720aebe734592a",
+  "githubSecret": "e0750a7b23e39c3db5c0173885e3ee036196386a"
+}

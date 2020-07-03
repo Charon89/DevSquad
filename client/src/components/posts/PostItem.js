@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import {connect} from 'react-redux';
 import {addLike, deletePost, removeLike} from "../../actions/post";
+import DOMpurify from "dompurify";
 
 const PostItem = ({auth, addLike, removeLike, deletePost, post: {_id, text, name, avatar, user, likes, comments, date}, showActions = true}) => {
     return (
@@ -16,8 +17,7 @@ const PostItem = ({auth, addLike, removeLike, deletePost, post: {_id, text, name
                     </Link>
                 </div>
                 <div className='mar-2'>
-                    <p className="my-1">
-                        {text}
+                    <p className="my-1" dangerouslySetInnerHTML={{__html: DOMpurify.sanitize(text)}}>
                     </p>
                     <p className="post-date">
                         Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>

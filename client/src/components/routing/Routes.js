@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Alert from "../layout/alert";
 import {Route, Switch} from "react-router-dom";
 import Register from "../auth/Register";

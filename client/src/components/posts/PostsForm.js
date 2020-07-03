@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addPost} from "../../actions/post";
@@ -22,10 +22,12 @@ const PostsForm = ({addPost}) => {
               rows="5"
               placeholder="Create a post"
               value={text}
-              onChange={e=> setText(e.target.value)}
+              onChange={e => setText(e.target.value)}
               required
           ></textarea>
-                <input type="submit" className="btn btn-dark my-1" value="Submit"/>
+                <button type="submit" className="btn btn-dark my-1">
+                    <i className="far fa-paper-plane"></i> {' '} Send
+                </button>
             </form>
         </div>
     );
@@ -35,4 +37,4 @@ PostsForm.propTypes = {
     addPost: PropTypes.func.isRequired,
 };
 
-export default connect(null,{addPost})(PostsForm);
+export default connect(null, {addPost})(PostsForm);

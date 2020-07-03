@@ -1,7 +1,6 @@
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Spinner from '../layout/spinner';
 import {addComment} from "../../actions/post";
 
 const CommentForm = ({postId, addComment}) => {
@@ -13,19 +12,21 @@ const CommentForm = ({postId, addComment}) => {
             </div>
             <form className="form my-1" onSubmit={event => {
                 event.preventDefault();
-                addComment(postId,{text});
+                addComment(postId, {text});
                 setText('');
             }}>
           <textarea
               name="text"
               cols="30"
               rows="5"
-              placeholder="Create a post"
+              placeholder="Your comment here"
               value={text}
-              onChange={e=> setText(e.target.value)}
+              onChange={e => setText(e.target.value)}
               required
           ></textarea>
-                <input type="submit" className="btn btn-dark my-1" value="Submit"/>
+                <button type="submit" className="btn btn-dark my-1" >
+                    <i className="far fa-paper-plane"></i> {' '} Send
+                </button>
             </form>
         </div>
     );
@@ -35,4 +36,4 @@ CommentForm.propTypes = {
     addComment: PropTypes.func.isRequired,
 };
 
-export default connect(null,{addComment})(CommentForm);
+export default connect(null, {addComment})(CommentForm);

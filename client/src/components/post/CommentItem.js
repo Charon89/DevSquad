@@ -1,9 +1,10 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 import Moment from "react-moment";
 import {deleteComment} from "../../actions/post";
+import DOMpurify from 'dompurify';
 
 const CommentItem = ({postId, deleteComment, auth, comment: {_id, text, name, avatar, user, date}}) => {
 
@@ -20,8 +21,7 @@ const CommentItem = ({postId, deleteComment, auth, comment: {_id, text, name, av
                 </Link>
             </div>
             <div className='mar-2' style={{margin: 'auto, 0'}}>
-                <p className="my">
-                    {text}
+                <p className="my" dangerouslySetInnerHTML={{__html: DOMpurify.sanitize(text)}}>
                 </p>
                 <p className="post-date">
                     Posted on {' '}

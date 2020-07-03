@@ -15,7 +15,17 @@ const Dashboard = ({getCurrentProfile, deleteAccount, auth: {user}, profile: {pr
     }, [getCurrentProfile]);
     return loading && profile === null ? <Spinner/> : <Fragment>
         <h1 className="large text-primary">Dashboard</h1>
-        <p className="lead"><i className="fas fa-user"></i>{' '}Welcome {user && user.name}</p>
+        <div className='post my-2'>
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+                {profile !== null ? <Fragment>
+                    <img className='round-img' style={{margin: '0 auto'}} src={profile.user.avatar} alt=""/>
+                </Fragment> : <Spinner/>}
+                <small>Manage your avatar using </small>
+                <a className='text-center do-text-center' href="https://en.gravatar.com/" target='_blank'
+                   rel="noopener noreferrer">Gravatar</a>
+            </div>
+            <p className="lead do-text-center">{' '}Welcome {user && user.name}</p>
+        </div>
         {profile !== null ?
             <Fragment>
                 <DashboardActions/>

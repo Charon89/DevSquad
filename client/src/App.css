@@ -514,8 +514,12 @@ button {
     margin-left: 2rem;
 }
 
+
 /* Mobile Styles */
 @media (max-width: 700px) {
+    .do-text-center{
+        text-align: center;
+    }
     .mar-2 {
         margin-left: 0.5rem;
     }

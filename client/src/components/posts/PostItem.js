@@ -15,7 +15,7 @@ const PostItem = ({auth, addLike, removeLike, deletePost, post: {_id, text, name
                         <h4>{name}</h4>
                     </Link>
                 </div>
-                <div>
+                <div className='mar-2'>
                     <p className="my-1">
                         {text}
                     </p>
